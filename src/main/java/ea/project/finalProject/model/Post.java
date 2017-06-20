@@ -29,11 +29,11 @@ public class Post {
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	private User owner;
-	@OneToMany(mappedBy="post",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="post")
 	
 	@JsonIgnore
 	private List<Comment> comments;
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany
 	private List<User> likes ;
 
 	public Post(){}
@@ -119,6 +119,13 @@ public class Post {
 		return likes;
 	}
 
+	public int likesize()
+	{
+		return likes.size();
+	}
+	
+	
+	
 	public void setLikes(List<User> likes) {
 		this.likes = likes;
 	}

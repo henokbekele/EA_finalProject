@@ -3,6 +3,7 @@ package ea.project.finalProject.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,13 +27,13 @@ public class User {
 	
 	@Embedded
 	private Address address;
-	@OneToMany(mappedBy="owner")
+	@OneToMany(mappedBy="owner", cascade=CascadeType.ALL)
 	@JsonIgnore
 	private List<Post> posts;
-	@OneToMany(mappedBy="owner")
+	@OneToMany(mappedBy="owner", cascade=CascadeType.ALL)
 	@JsonIgnore
 	private List<Comment> comments;
-	@ManyToMany(mappedBy="likes")
+	@ManyToMany(mappedBy="likes", cascade=CascadeType.ALL)
 	@JsonIgnore
 	private List<Post> likedPosts;
 	

@@ -35,10 +35,11 @@ public class PostController {
 
 	@RequestMapping(value="/addpost", method=RequestMethod.POST)
 	public String addPost(String title, String content,ModelMap model){
-		Post  post= new Post(title,new Date(), new Date(), content, userService.getUser(1));
+		Post  post= new Post(title,new Date(), new Date(), content, userService.getUser(2));
 		this.postService.addPost(post);
 		return "redirect:/home";
 	}
+	 
 	
 	@RequestMapping(value="/remove", method=RequestMethod.POST)
 	public String removePost(Post post,ModelMap model){
@@ -57,5 +58,11 @@ public class PostController {
 		model.addAttribute("posts",this.postService.getAllPost());
 		return "redirect:/home";
 	}
+	
+	
+	
+	
+	
+
 	
 }
