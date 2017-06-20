@@ -11,6 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Comment {
 	@Id 
@@ -25,8 +28,10 @@ public class Comment {
 	@ManyToOne
 	private User owner;
 	@ManyToOne
+	 
 	private Post post;
 	@ManyToMany
+	 
 	private List<User> likes ;
 	
 	public Comment(){}
@@ -44,6 +49,17 @@ public class Comment {
 	}
 
 
+	public Comment(Date createdDate, Date updatedDate, String content, User owner, Post post) {
+		super();
+		this.createdDate = createdDate;
+		this.updatedDate = updatedDate;
+		this.content = content;
+		this.owner = owner;
+		this.post = post;
+		
+	}
+
+	
 
 	public int getId() {
 		return id;

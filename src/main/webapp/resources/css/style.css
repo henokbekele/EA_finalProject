@@ -1,0 +1,37 @@
+@CHARSET "ISO-8859-1";
+.left{
+	width:200px;
+	border:1px solid black;
+	float:left;
+}
+.middle{
+	width:700px;
+	border:1px solid black;
+	float:left;
+}
+.right{
+	width:200px;
+	border:1px solid black;
+	float:left;
+}
+
+.newPostContainer{
+		border:1px solid blue;
+		margin: 5px;
+	
+}
+.listPostContainer{
+	border:1px solid red;
+	margin: 5px;
+}
+
+.postContainer{
+	border:1px solid green;
+	margin: 5px;
+}
+
+.commentcontainer{
+	
+	border:1px solid blue;
+	margin: 5px;
+}

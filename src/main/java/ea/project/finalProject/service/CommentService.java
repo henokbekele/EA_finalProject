@@ -1,16 +1,25 @@
 package ea.project.finalProject.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 
 import ea.project.finalProject.dao.CommentDao;
 import ea.project.finalProject.model.Comment;
 import ea.project.finalProject.model.User;
 
+@Transactional
+@Controller
 public class CommentService {
 	
 	@Autowired
 	private CommentDao commentDao;
 	
+	public CommentService() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Comment addComment(Comment comment)
 	{
@@ -36,6 +45,19 @@ public class CommentService {
 	{
 		return commentDao.save(comment);
 	}
+	
+	public void deleteCommentById(int id)
+	{
+		 commentDao.delete(id); 
+	}
+	
+	public List<Comment> getCommentForPost(int id)
+	{
+	
+		return commentDao.findByPostId(id);
+		
+	}
+
 	
 	public boolean statusLikeComment(User user, Comment comment)
 	{

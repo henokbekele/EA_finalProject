@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 public class User {
 	@Id
@@ -24,12 +27,17 @@ public class User {
 	@Embedded
 	private Address address;
 	@OneToMany(mappedBy="owner")
+	@JsonIgnore
 	private List<Post> posts;
 	@OneToMany(mappedBy="owner")
+	@JsonIgnore
 	private List<Comment> comments;
 	@ManyToMany(mappedBy="likes")
+	@JsonIgnore
 	private List<Post> likedPosts;
+	
 	@ManyToMany(mappedBy="likes")
+	@JsonIgnore
 	private List<Comment> likedComments;
 	
 	@ManyToMany

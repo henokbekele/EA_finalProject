@@ -12,6 +12,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 public class Post {
 	@Id @GeneratedValue
@@ -26,6 +30,8 @@ public class Post {
 	@ManyToOne(cascade=CascadeType.ALL)
 	private User owner;
 	@OneToMany(mappedBy="post",cascade=CascadeType.ALL)
+	
+	@JsonIgnore
 	private List<Comment> comments;
 	@ManyToMany(cascade=CascadeType.ALL)
 	private List<User> likes ;
@@ -43,6 +49,15 @@ public class Post {
 		this.comments = comments;
 		this.likes = likes;
 	}
+	
+	public Post(String title, Date createdDate, Date updatedDate, String content, User owner) {
+		super();
+		this.title = title;
+		this.createdDate = createdDate;
+		this.updatedDate = updatedDate;
+		this.content = content;
+		this.owner = owner;
+		}
 
 	public int getId() {
 		return id;
