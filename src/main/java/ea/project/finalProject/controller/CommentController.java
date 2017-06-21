@@ -35,27 +35,30 @@ public class CommentController {
 */
 	
 	@PostMapping(value = "/addcomment")
-	public String addComment(String content, int postId ) {
+	public String addComment(String content, int postId, int userId ) {
 
-		Comment comment = new Comment(new Date(),new Date(),content,userService.getUser(1), postService.getPost(postId) );
+		Comment comment = new Comment(new Date(),new Date(),content,userService.getUser(userId), postService.getPost(postId) );
 			commentService.addComment(comment);
 		
 		return "redirect:/home";
 
 	}
 
-	@PostMapping(value = "/deletecomment")
-	public String deleteComment(Comment comment, Model model) {
-		commentService.deleteComment(comment);
-		return "redirect:/comments";
+	@PostMapping(value = "/deleteComment")
+	public String deleteComment(String userid, int commentid) {
+		commentService.deleteCommentById(commentid);
+		return "redirect:/home";
 
 	}
 
-	@PostMapping(value = "/updatecomment")
-	public String updateComment(Comment comment, Model model) {
+	@PostMapping(value = "/updateComment")
+	public String updateComment(int commentid, String content, Model model) {
+		Comment comment = commentService.getComment(commentid);
 		comment.setUpdatedDate(new Date());
+		comment.setContent(content);
+		// comment.setUpdatedDate(new Date());
 		commentService.updateComment(comment);
-		return "redirect:/comments";
+		return "redirect:/home";
 
 	}
 

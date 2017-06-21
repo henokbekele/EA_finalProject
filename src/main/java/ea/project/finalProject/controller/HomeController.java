@@ -93,12 +93,25 @@ public class HomeController {
 		
 
 		postService.deletePostById(postid);
+		//postService.deletePost(postService.getPost(postid));
 
 		return "redirect:/home";
 	}
 
 
+	@RequestMapping(value="/updatePost", method=RequestMethod.POST)
+	public String updatePost(int postid, String content, Model model){
+		
+
+		Post post=postService.getPost(postid);
+		post.setContent(content);
+		postService.updatePost(post);
+
+		return "redirect:/home";
+	}
+
 	
-	//postUnLike
+	
+	//updatePost
 
 }

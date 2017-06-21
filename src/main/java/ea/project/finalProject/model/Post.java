@@ -27,9 +27,9 @@ public class Post {
 	private Date updatedDate;
 	private String content;
 
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	private User owner;
-	@OneToMany(mappedBy="post")
+	@OneToMany(mappedBy="post", cascade=CascadeType.ALL)
 	
 	@JsonIgnore
 	private List<Comment> comments;
